@@ -27,14 +27,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(sanitizer());
 
-
-const url =  "mongodb+srv://osmani:osmani@second-project.u8ncf.mongodb.net/ssh-project?retryWrites=true&w=majority";
-
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+require('dotenv/config');
+mongoose.connect(process.env.CONN_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => console.log("now you are connected with mangodb"))
   .catch((err) => console.log(err));
-// mongoose.connect(url, {useNewUrlParser : true, useUnifiedTopology: true,});
-
 mongoose.set('useFindAndModify', false);
 
 
@@ -81,7 +77,7 @@ app.use(authRoutes);
 
 
 server =app.listen(process.env.PORT || 3000, () => {
-  console.log("your server is running at https://localhost:3000");
+  console.log("your server is running at http://localhost:3000");
 });
 
 
@@ -135,4 +131,3 @@ io.on('connection', (socket) => {
         connnections.splice(connnections.indexOf(socket),1);
     })
 })
-
