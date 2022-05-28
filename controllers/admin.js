@@ -176,7 +176,7 @@ exports.getDeleteSchedule = async(req, res, next) => {
         const schedule = await Schedule.findById(schedule_id);
         await schedule.remove();
 
-        req.flash("success", `Libri me titull ${schedule.title} u fshi!`);
+        req.flash("success", `Orari me titull ${schedule.title} u fshi!`);
         res.redirect('back');
 
     } catch(err) {
@@ -334,7 +334,7 @@ exports.postAddNewSchedule = async(req, res, next) => {
 
         const new_schedule = new Schedule(schedule_info);
         await new_schedule.save();
-        req.flash("success", `Libri me titullin ${new_schedule.title} u shtua ne inventar`);
+        req.flash("success", `Orari me titullin ${new_schedule.title} u shtua ne inventar`);
         res.redirect("/admin/scheduleInventory/all/all/1");
     } catch(err) {
         console.log(err);
