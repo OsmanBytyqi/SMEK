@@ -1,0 +1,120 @@
+<%- include ('../partials/header'); %>
+
+
+<%- include ('../partials/adminNav'); %>
+
+<header id="main-header" class="py-2 bg-primary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><i class="fa fa-pencil"></i>Oraret</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="search_bar" class="my-3 py-4 bg-light">
+  <div class="container">
+   <form action="/admin/scheduleInventory/all/all/1" method="POST">
+    <div class="row">
+      <div class="col-md-5 p-1">
+        <select name="filter" class="form-control">
+          <option selected disabled>Select Filter...</option>
+          <option value="Title" >Lenda</option>
+          <option  value="author">Profesori</option>
+          <option  value="category">Kategoria</option>
+          <option  value="ISBN">ditet e lira</option>
+        </select>
+      </div>
+
+         <div class="col-md-5 p-1">
+          <input name="searchName"  type="text" class="form-control" placeholder="Kerko orar">
+        </div>
+
+         <div class="col-md-2 p-1">
+          <input type="submit" class="btn btn-outline-primary btn-block" value="">
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<%- include ('../partials/alerts'); %>
+
+<section id="scheduleInventory" class="mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <table class="table table-striped">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Lenda</th>
+                <th>Profesori</th>
+                <th>Dita e javes</th>
+                <th>Kategoria</th>
+                <th>Te lira</th>
+                <th>Ndrysho</th>
+              </tr>
+            </thead>
+            <tbody>
+
+          <% schedules.forEach(schedule => { %>
+
+              <tr>
+                <td><%= schedule.title %></td>
+                <td><%= schedule.author %> </td>
+                <td><%= schedule.ditaejaves%></td>
+                <td><%= schedule.category %></td>
+                <td><%= schedule.telira%></td>
+                <td>
+                    <span>
+                        <a href="/admin/schedule/update/<%=schedule._id%>" class="btn btn-info btn-sm">Perditeso</a>
+                        <a href="/admin/schedule/delete/<%=schedule._id%>" class="btn btn-sm btn-danger">Fshi</a>
+                    </span>
+                </td>
+              </tr>
+          <% }); %>
+
+            </tbody>
+          </table>
+
+          <% if (pages > 0) { %>
+            <nav class="ml-3 mb-2">
+              <ul class="pagination offset-md-3">
+
+            <% if (current == 1) { %>
+                <li class="page-item disabled"><a class="page-link">E para</a></li>
+            <% } else { %>
+                <li class="page-item"><a href="/admin/scheduleInventory/<%=filter%>/<%=value%>/1" class="page-link">E para</a></li>
+            <% } %>
+
+            <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                <% if (i !== 1) { %>
+                  <li class="page-item disabled"><a class="page-link">...</a></li>
+                <% } %>
+                <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                    <% if (i == current) { %>
+                      <li class="page-item active"><a class="page-link"><%= i %></a></li>
+                    <% } else { %>
+                      <li class="page-item"><a class="page-link" href="/admin/scheduleInventory/<%=filter%>/<%=value%>/<%=i%>"> <%=i%></a> </li>
+                    <% } %>
+                    <% if (i == Number(current) + 4 && i < pages) { %>
+                          <li class="page-item disabled"><a class="page-link">...</a></li>
+                      <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="page-item disabled"><a class="page-link">E fundit</a></li>
+                    <% } else { %>
+                        <li class="page-item"><a href="/admin/scheduleInventory/<%=filter%>/<%=value%>/<%=pages%>" class="page-link">E fundit</a></li>
+                <% } %>
+            </ul>
+          </nav>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include ('../partials/footer'); %>
