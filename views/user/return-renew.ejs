@@ -1,0 +1,65 @@
+<%- include ('../partials/header'); %>
+
+<%- include ('../partials/userNav'); %>
+
+
+<header id="main-header" class="py-2 bg-info text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><i class="fa fa-retweet"></i> Anulo</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<section class="mt-4 py-3">
+    <div class="container">
+        <div class="col mx-auto">
+
+        <div class="card">
+          <div class="card-header text-center">
+            <h4>Te gjitha per Anulim</h4>
+          </div>
+          <table class="table table-striped">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Lenda</th>
+                <th>Profesori</th>
+                <th>Data e Rezervimit</th>
+                <th>Data e Anulimit</th>
+                <th>Kategoria</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% user.forEach(schedule => { %>
+                <tr>
+
+                <td> <%- schedule.schedule_info.title%></td>
+                <td><%- schedule.schedule_info.author%></td>
+                <td><%- schedule.schedule_info.issueDate.toDateString()%></td>
+                <td><%- schedule.schedule_info.returnDate.toDateString()%></td>
+                <td><%- schedule.schedule_info.category%></td>
+                <td>
+
+
+
+                  <form action="/schedules/return/<%- schedule.schedule_info.id%>" method="POST" class="d-inline">
+                   <input class="btn btn-xs btn-info" type="submit" value="Anulo">
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+
+
+
+        </div>
+      </div>
+    </div>
+</section>
+
+<%- include ('../partials/footer'); %>
