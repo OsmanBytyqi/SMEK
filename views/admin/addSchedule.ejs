@@ -1,0 +1,60 @@
+<%- include ('../partials/header'); %>
+
+<%- include ('../partials/adminNav') %>
+
+<%- include ('../partials/alerts'); %>
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card">
+              <div class="card-header text-center">
+                <h4>Shto orare</h4>
+              </div>
+                <div class="card-block">
+                  <form class="p-3" action="/admin/schedules/add" method="POST">
+
+                    <div class="form-group">
+                      <label class="form-control-label">Lenda</label>
+                      <input type="text" name="schedule[title]" placeholder="Emri i lendes" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-control-label">Profesori</label>
+                      <input type="text" name="schedule[author]" placeholder="Emri i profesori" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-control-label">Dita e javes</label>
+                      <input type="text" name="schedule[ISBN]" placeholder="Dita e javes" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-control-label">Kategoria</label>
+                      <input type="text" name="schedule[category]" placeholder="Kategoria" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-control-label">Te lira</label>
+                      <input type="Number" name="schedule[stock]" placeholder="te lira" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-control-label">Pershkrimi i orarit</label>
+                      <textarea name="schedule[description]" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Shto orarin</button>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace('schedule[description]');
+</script>
+
+<%- include ('../partials/footer'); %>
