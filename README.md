@@ -28,7 +28,7 @@
 ## Run the application
 All data in this application stored in MongoDB. Make sure MongoDB installed in
 your machine or environment. Keep `mongod` running on background and run
-`npm start` but before running npm start make sure you installed node_modules with `npm install` command on app folder.
+`npm start` but before running `npm start` make sure you installed `node_modules` with `npm install` command on app folder.
 
 ## Functionalitites
 
