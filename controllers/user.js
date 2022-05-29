@@ -104,7 +104,7 @@ exports.putUpdateUserProfile = async(req, res, next) => {
 
 exports.postIssueSchedule = async(req, res, next) => {
     if(req.user.scheduleIssueInfo.length >= 5) {
-        req.flash("warning", "Ju nuk mund te merrni me shume se 5 libra njekohesisht.");
+        req.flash("warning", "Ju nuk mund te te rezervoni me shume se 5 orare njokohsisht njekohesisht.");
         return res.redirect("back");
     }
 
